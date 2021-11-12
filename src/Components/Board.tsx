@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 
-const SIZE = 5
 
 function Board() {
 
+    const [SIZE, setSIZE] = useState(3);
     const [Squares, setSquares] = useState(Array(SIZE * SIZE).fill(false));
-    const numsss = Array.from(Array(SIZE).keys());
+    var looper = Array.from(Array(SIZE).keys());
+
+    const updateBoard = (i: number) => {
+      if (i > 2) setSIZE(i);
+      setSquares(Array(SIZE * SIZE).fill(false));
+      looper = Array.from(Array(SIZE).keys());
+    }
 
     const Ripple = (i: number) => {
       var tempSquares = Squares.concat();
@@ -27,7 +33,10 @@ function Board() {
 
     return (
         <div>
-          {numsss.map((i) => <div className="board-row">{numsss.map((j) => renderSquare(j + SIZE*i))}</div>)}
+          <button onClick={() => updateBoard(SIZE)}>reset</button>
+          <button onClick={() => updateBoard(SIZE + 1)}>more</button>
+          <button onClick={() => updateBoard(SIZE - 1)}>less</button>
+          {looper.map((i) => <div className="board-row">{looper.map((j) => renderSquare(j + SIZE*i))}</div>)}
         </div>
       );
 }
