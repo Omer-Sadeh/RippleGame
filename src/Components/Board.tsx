@@ -1,29 +1,24 @@
 import React, { useState } from 'react';
 
-const SIZE = 4
+const SIZE = 5
 
 function Board() {
 
     const [Squares, setSquares] = useState(Array(SIZE * SIZE).fill(false));
-
-    const HandleClick = (i: number) => {
-      var tempSquares = Squares.concat()
-      tempSquares[i] = !tempSquares[i]
-      setSquares(tempSquares)
-    }
+    const numsss = Array.from(Array(SIZE).keys());
 
     const Ripple = (i: number) => {
-      var tempSquares = Squares.concat()
-      var indexes = [ i-SIZE-1, i-SIZE, i-SIZE+1, i+1, i+SIZE+1, i+SIZE, i+SIZE-1, i-1]
+      var tempSquares = Squares.concat();
+      var indexes = [ i-SIZE-1, i-SIZE, i-SIZE+1, i+1, i+SIZE+1, i+SIZE, i+SIZE-1, i-1];
 
       indexes.map((index) => {
         if (!(index < 0) && !(index > SIZE * SIZE)) {
-          if (Math.abs(index%4-i%4) < 2) tempSquares[index] = !tempSquares[index]
+          if (Math.abs(index%SIZE-i%SIZE) < 2) tempSquares[index] = !tempSquares[index];
         }
-        return tempSquares
-      })
+        return tempSquares;
+      });
 
-      setSquares(tempSquares)
+      setSquares(tempSquares);
     }
 
     const renderSquare = (i: number) => {
@@ -32,30 +27,7 @@ function Board() {
 
     return (
         <div>
-          <div className="board-row">
-            {renderSquare(0)}
-            {renderSquare(1)}
-            {renderSquare(2)}
-            {renderSquare(3)}
-          </div>
-          <div className="board-row">
-            {renderSquare(4)}
-            {renderSquare(5)}
-            {renderSquare(6)}
-            {renderSquare(7)}
-          </div>
-          <div className="board-row">
-            {renderSquare(8)}
-            {renderSquare(9)}
-            {renderSquare(10)}
-            {renderSquare(11)}
-          </div>
-          <div className="board-row">
-            {renderSquare(12)}
-            {renderSquare(13)}
-            {renderSquare(14)}
-            {renderSquare(15)}
-          </div>
+          {numsss.map((i) => <div className="board-row">{numsss.map((j) => renderSquare(j + SIZE*i))}</div>)}
         </div>
       );
 }
