@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 
+const SIZE = 4
+
 function Board() {
 
-    const [Squares, setSquares] = useState(Array(16).fill(false));
+    const [Squares, setSquares] = useState(Array(SIZE * SIZE).fill(false));
 
     const HandleClick = (i: number) => {
       var tempSquares = Squares.concat()
@@ -10,8 +12,22 @@ function Board() {
       setSquares(tempSquares)
     }
 
+    const Ripple = (i: number) => {
+      var tempSquares = Squares.concat()
+      var indexes = [ i-SIZE-1, i-SIZE, i-SIZE+1, i+1, i+SIZE+1, i+SIZE, i+SIZE-1, i-1]
+
+      indexes.map((index) => {
+        if (!(index < 0) && !(index > SIZE * SIZE)) {
+          if (Math.abs(index%4-i%4) < 2) tempSquares[index] = !tempSquares[index]
+        }
+        return tempSquares
+      })
+
+      setSquares(tempSquares)
+    }
+
     const renderSquare = (i: number) => {
-      return (<button className={Squares[i] ? "squareFull" : "squareEmpty"} onClick={() => HandleClick(i)} />);
+      return (<button className={Squares[i] ? "squareFull" : "squareEmpty"} onClick={() => Ripple(i)} />);
     }
 
     return (
