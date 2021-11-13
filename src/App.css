@@ -38,8 +38,9 @@
 }
 
 .squareEmpty {
-  background: #282c34;
-  border: 1px solid #999;
+  background: #3f4552;
+  border: 3px solid #282c34;
+  border-radius: 10px;
   float: left;
   font-size: 24px;
   font-weight: bold;
@@ -52,9 +53,18 @@
   width: 34px;
 }
 
+.squareEmpty:hover {
+  background: #4e5666;
+}
+
+.squareFull:hover {
+  background: #fcc512;
+}
+
 .squareFull {
   background: #ddab06;
-  border: 1px solid #999;
+  border: 3px solid #282c34;
+  border-radius: 10px;
   float: left;
   font-size: 24px;
   font-weight: bold;
