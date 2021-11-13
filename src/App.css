@@ -57,8 +57,9 @@
   background: #4e5666;
 }
 
-.squareFull:hover {
-  background: #fcc512;
+.squareEmpty:active {
+  background: #30353f;
+  border: 5px solid #282c34;
 }
 
 .squareFull {
@@ -77,6 +78,14 @@
   width: 34px;
 }
 
+.squareFull:hover {
+  background: #fcc512;
+}
+
+.squareFull:active {
+  background: #8b6c03;
+  border: 5px solid #282c34;
+}
 .board-row:after {
   clear: both;
   content: "";
