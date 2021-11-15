@@ -17,7 +17,7 @@ function Board() {
         setSquares(newSquares);
         setSquaresClass(ExtractClassArray(newSquares));
       }
-      else alert("Cannot create board smaller than 3x3!");
+      else alert("Cannot create board smaller than 3x3! try again.");
     }
 
     const ExtractClassArray = (currentArray: boolean[]) => {
