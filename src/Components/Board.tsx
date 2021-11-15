@@ -10,11 +10,14 @@ function Board() {
 
     const updateBoard = (Size: number, newSquares: boolean[]) => {
       var newSize = SIZE
-      if (Size > 2) newSize = Size
-      setSIZE(newSize);
-      setIndexArray(Array.from(Array(newSize).keys()));
-      setSquares(newSquares);
-      setSquaresClass(ExtractClassArray(newSquares));
+      if (Size > 2) {
+        newSize = Size
+        setSIZE(newSize);
+        setIndexArray(Array.from(Array(newSize).keys()));
+        setSquares(newSquares);
+        setSquaresClass(ExtractClassArray(newSquares));
+      }
+      else alert("Cannot create board smaller than 3x3!");
     }
 
     const ExtractClassArray = (currentArray: boolean[]) => {
