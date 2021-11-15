@@ -44,6 +44,9 @@ jobs:
         run: |
           npm install
           npm run build
-          npm run deploy
         env:
          CI: false
+         
+      - name: GH Pages deploy
+        uses: Cecilapp/GitHub-Pages-deploy@3.2.0
+
