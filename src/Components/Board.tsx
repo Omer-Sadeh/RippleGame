@@ -6,13 +6,15 @@ function Board() {
     const [SIZE, setSIZE] = useState(3);
     const [Squares, setSquares] = useState(Array(SIZE * SIZE).fill(false));
     const [SquaresClass, setSquaresClass] = useState(Array(SIZE * SIZE).fill("squareEmpty"));
-    var looper = Array.from(Array(SIZE).keys());
+    const [IndexArray, setIndexArray] = useState(Array.from(Array(SIZE).keys()))
 
     const updateBoard = (i: number) => {
-      if (i > 2) setSIZE(i);
-      setSquares(Array(SIZE * SIZE).fill(false));
-      setSquaresClass(Array(SIZE * SIZE).fill("squareEmpty"));
-      looper = Array.from(Array(SIZE).keys());
+      var newSize = SIZE
+      if (i > 2) newSize = i
+      setSIZE(newSize);
+      setIndexArray(Array.from(Array(newSize).keys()))
+      setSquares(Array(newSize * newSize).fill(false));
+      setSquaresClass(Array(newSize * newSize).fill("squareEmpty"));
     }
 
     const Ripple = (i: number) => {
@@ -53,7 +55,7 @@ function Board() {
         <button onClick={() => updateBoard(SIZE)}>reset</button>
         <button onClick={() => updateBoard(SIZE + 1)}>more</button>
         <button onClick={() => updateBoard(SIZE - 1)}>less</button>
-        {looper.map((i) => <div className="board-row">{looper.map((j) => renderSquare(j + SIZE*i))}</div>)}
+        {IndexArray.map((i) => <div className="board-row">{IndexArray.map((j) => renderSquare(j + SIZE*i))}</div>)}
       </div>
     );
 }
