@@ -8,41 +8,42 @@ function Board() {
     const [SquaresClass, setSquaresClass] = useState(Array(SIZE * SIZE).fill("squareEmpty"));
     const [IndexArray, setIndexArray] = useState(Array.from(Array(SIZE).keys()))
 
-    const updateBoard = (i: number) => {
+    const updateBoard = (Size: number, newSquares: boolean[]) => {
       var newSize = SIZE
-      if (i > 2) newSize = i
+      if (Size > 2) newSize = Size
       setSIZE(newSize);
-      setIndexArray(Array.from(Array(newSize).keys()))
-      setSquares(Array(newSize * newSize).fill(false));
-      setSquaresClass(Array(newSize * newSize).fill("squareEmpty"));
+      setIndexArray(Array.from(Array(newSize).keys()));
+      setSquares(newSquares);
+      setSquaresClass(ExtractClassArray(newSquares));
+    }
+
+    const ExtractClassArray = (currentArray: boolean[]) => {
+      var temp = Array(currentArray.length).fill("squareEmpty");
+      for (var i=0; i<currentArray.length; i++) {
+        if (currentArray[i]) temp[i] = "squareFull";
+      }
+      return temp;
     }
 
     const Ripple = (i: number) => {
       var tempSquares = Squares.concat();
-      var tempSquaresClass = SquaresClass.concat();
       var indexes = [ i-SIZE-1, i-SIZE, i-SIZE+1, i+1, i+SIZE+1, i+SIZE, i+SIZE-1, i-1];
       var winningBoard = Array(SIZE * SIZE).fill(true);
 
       indexes.map((index) => {
-        if (!(index < 0) && !(index > SIZE * SIZE) && (Math.abs(index%SIZE-i%SIZE) < 2)) {
-          tempSquares[index] = !tempSquares[index];
-          if (tempSquares[index]) tempSquaresClass[index] = "squareFull";
-          else tempSquaresClass[index] = "squareEmpty";
-        }
-        return tempSquares;
+        if (!(index < 0) && !(index > SIZE * SIZE) && (Math.abs(index%SIZE-i%SIZE) < 2)) tempSquares[index] = !tempSquares[index];
       });
 
-      setSquares(tempSquares);
-      setSquaresClass(tempSquaresClass);
+      updateBoard(SIZE, tempSquares)
       if (tempSquares === winningBoard) winSequence();
     }
 
     const winSequence = async () => {
       var winSquares = Array(SIZE * SIZE).fill("squareWon");
       await timeout(100);
-      setSquaresClass(winSquares);
+      updateBoard(SIZE, winSquares);
       await timeout(500);
-      updateBoard(SIZE);
+      updateBoard(SIZE, Array(SIZE * SIZE).fill(false));
     }
     function timeout(delay: number) {return new Promise( res => setTimeout(res, delay) );}
 
@@ -52,9 +53,9 @@ function Board() {
 
     return (
       <div>
-        <button onClick={() => updateBoard(SIZE)}>reset</button>
-        <button onClick={() => updateBoard(SIZE + 1)}>more</button>
-        <button onClick={() => updateBoard(SIZE - 1)}>less</button>
+        <button onClick={() => updateBoard(SIZE, Array(SIZE * SIZE).fill(false))}>reset</button>
+        <button onClick={() => updateBoard(SIZE + 1, Array((SIZE + 1) * (SIZE + 1)).fill(false))}>more</button>
+        <button onClick={() => updateBoard(SIZE - 1, Array((SIZE - 1) * (SIZE - 1)).fill(false))}>less</button>
         {IndexArray.map((i) => <div className="board-row">{IndexArray.map((j) => renderSquare(j + SIZE*i))}</div>)}
       </div>
     );
