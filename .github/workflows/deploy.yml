@@ -33,6 +33,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          
+      - name: fix1
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
 
       # Runs a single command using the runners shell
       - name: Build
