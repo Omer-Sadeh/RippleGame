@@ -3,21 +3,21 @@ import React, { useState } from 'react';
 
 function Board() {
 
-    const [SIZE, setSIZE] = useState(3);
+    const [SIZE, setSIZE] = useState(4);
     const [Squares, setSquares] = useState(Array(SIZE * SIZE).fill(false));
     const [SquaresClass, setSquaresClass] = useState(Array(SIZE * SIZE).fill("squareEmpty"));
     const [IndexArray, setIndexArray] = useState(Array.from(Array(SIZE).keys()))
 
     const updateBoard = (Size: number, newSquares: boolean[]) => {
       var newSize = SIZE
-      if (Size > 1) {
+      if (Size > 2) {
         newSize = Size
         setSIZE(newSize);
         setIndexArray(Array.from(Array(newSize).keys()));
         setSquares(newSquares);
         setSquaresClass(ExtractClassArray(newSquares));
       }
-      else alert("Cannot create board smaller than 2x2! try again.");
+      else alert("Cannot create board smaller than 3x3! try again.");
     }
 
     const ExtractClassArray = (currentArray: boolean[]) => {
@@ -38,6 +38,7 @@ function Board() {
       });
 
       updateBoard(SIZE, tempSquares);
+      if (tempSquares[0]) winSequence();
       if (tempSquares === winningBoard) winSequence();
     }
 
