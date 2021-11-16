@@ -38,7 +38,6 @@ function Board() {
       });
 
       updateBoard(SIZE, tempSquares);
-      if (tempSquares[0]) winSequence();
       if (tempSquares === winningBoard) winSequence();
     }
 
