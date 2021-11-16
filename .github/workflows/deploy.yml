@@ -47,6 +47,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          email: omer.sadeh@protonmail.com
+          email: arnaud@ligny.org
           build_dir: build
 
