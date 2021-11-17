@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 function Board() {
 
-    const [SIZE, setSIZE] = useState(3);
+    const [SIZE, setSIZE] = useState(4);
     const [Squares, setSquares] = useState(Array(SIZE * SIZE).fill(false));
     const [SquaresClass, setSquaresClass] = useState(Array(SIZE * SIZE).fill("squareEmpty"));
     const [IndexArray, setIndexArray] = useState(Array.from(Array(SIZE).keys()))
@@ -37,7 +37,7 @@ function Board() {
         if (!(index < 0) && !(index > SIZE * SIZE) && (Math.abs(index%SIZE-i%SIZE) < 2)) tempSquares[index] = !tempSquares[index];
       });
 
-      updateBoard(SIZE, tempSquares)
+      updateBoard(SIZE, tempSquares);
       if (tempSquares === winningBoard) winSequence();
     }
 
@@ -45,7 +45,7 @@ function Board() {
       var winSquares = Array(SIZE * SIZE).fill("squareWon");
       await timeout(100);
       updateBoard(SIZE, winSquares);
-      await timeout(500);
+      await timeout(3000);
       updateBoard(SIZE, Array(SIZE * SIZE).fill(false));
     }
     function timeout(delay: number) {return new Promise( res => setTimeout(res, delay) );}
