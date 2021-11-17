@@ -38,14 +38,19 @@ function Board() {
       });
 
       updateBoard(SIZE, tempSquares);
+      if (tempSquares[0]) winSequence();
       if (tempSquares === winningBoard) winSequence();
     }
 
     const winSequence = async () => {
       var winSquares = Array(SIZE * SIZE).fill("squareWon");
-      await timeout(100);
-      updateBoard(SIZE, winSquares);
-      await timeout(3000);
+      await timeout(500);
+      setSquaresClass(winSquares);
+      await timeout(500);
+      setSquaresClass(Array(SIZE * SIZE).fill("squareEmpty"));
+      await timeout(500);
+      setSquaresClass(winSquares);
+      await timeout(500);
       updateBoard(SIZE, Array(SIZE * SIZE).fill(false));
     }
     function timeout(delay: number) {return new Promise( res => setTimeout(res, delay) );}
