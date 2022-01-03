@@ -10,7 +10,7 @@ function Board() {
 
     const updateBoard = (Size: number, newSquares: boolean[]) => {
       var newSize = SIZE
-      if ((Size > 2) && (Size < 11)) {
+      if ((Size > 2) && (Size < 8)) {
         newSize = Size
         setSIZE(newSize);
         setIndexArray(Array.from(Array(newSize).keys()));
