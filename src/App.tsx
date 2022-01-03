@@ -8,14 +8,10 @@ export type AppState = {
 
 class App extends React.PureComponent<{}, AppState> {
 
-  state: AppState = {
-		squares: Array(25).fill(false)
-	}
-
   render() {
     return (
       <div className="App">
-        <div className="App-header">
+        <div className="App-body">
           <Board />
         </div>
       </div>

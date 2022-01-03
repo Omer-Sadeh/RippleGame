@@ -6,18 +6,17 @@ function Board() {
     const [SIZE, setSIZE] = useState(4);
     const [Squares, setSquares] = useState(Array(SIZE * SIZE).fill(false));
     const [SquaresClass, setSquaresClass] = useState(Array(SIZE * SIZE).fill("squareEmpty"));
-    const [IndexArray, setIndexArray] = useState(Array.from(Array(SIZE).keys()))
+    const [IndexArray, setIndexArray] = useState(Array.from(Array(SIZE).keys()));
 
     const updateBoard = (Size: number, newSquares: boolean[]) => {
       var newSize = SIZE
-      if (Size > 2) {
+      if ((Size > 2) && (Size < 11)) {
         newSize = Size
         setSIZE(newSize);
         setIndexArray(Array.from(Array(newSize).keys()));
         setSquares(newSquares);
         setSquaresClass(ExtractClassArray(newSquares));
       }
-      else alert("Cannot create board smaller than 3x3! don't give up!");
     }
 
     const ExtractClassArray = (currentArray: boolean[]) => {
@@ -55,15 +54,25 @@ function Board() {
     function timeout(delay: number) {return new Promise( res => setTimeout(res, delay) );}
 
     const renderSquare = (i: number) => {
-      return (<button className={SquaresClass[i]} onClick={() => Ripple(i)}/>);
+      return (<button className={"square " + SquaresClass[i]} onClick={() => Ripple(i)}/>);
     }
 
     return (
-      <div>
-        <button onClick={() => updateBoard(SIZE, Array(SIZE * SIZE).fill(false))}>reset</button>
-        <button onClick={() => updateBoard(SIZE + 1, Array((SIZE + 1) * (SIZE + 1)).fill(false))}>more</button>
-        <button onClick={() => updateBoard(SIZE - 1, Array((SIZE - 1) * (SIZE - 1)).fill(false))}>less</button>
-        {IndexArray.map((i) => <div className="board-row">{IndexArray.map((j) => renderSquare(j + SIZE*i))}</div>)}
+      <div className="app-body">
+      <div className="top">
+        <button onClick={() => updateBoard(SIZE + 1, Array((SIZE + 1) * (SIZE + 1)).fill(false))} className="control">➕</button>
+        <button onClick={() => updateBoard(SIZE, Array(SIZE * SIZE).fill(false))} className="control">🏳️‍</button>
+        <button onClick={() => updateBoard(SIZE - 1, Array((SIZE - 1) * (SIZE - 1)).fill(false))} className="control">➖</button>
+      </div>
+      <div className="main">
+        <div>
+          {IndexArray.map((i) => <div className="board-row">{IndexArray.map((j) => renderSquare(j + SIZE*i))}</div>)}
+        </div>
+      </div>
+      <div className="footer">
+        {// blank for now
+        }
+      </div>
       </div>
     );
 }
