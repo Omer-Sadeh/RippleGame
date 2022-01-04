@@ -1,0 +1,7 @@
+{
+    "name": "Ripple Game",
+    "integrations": {
+      "capacitor": {}
+    },
+    "type": "react"
+  }

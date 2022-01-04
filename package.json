@@ -5,6 +5,8 @@
   "homepage": "/.",
   "main": "public/electron.js",
   "dependencies": {
+    "@capacitor/android": "3.3.3",
+    "@capacitor/core": "^3.3.3",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -53,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@capacitor/cli": "^3.3.3",
     "gh-pages": "^3.2.3"
   }
 }
