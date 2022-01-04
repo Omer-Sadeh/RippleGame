@@ -37,7 +37,9 @@ function Board() {
       });
 
       updateBoard(SIZE, tempSquares);
-      if (tempSquares === winningBoard) winSequence();
+      var flag = true;
+      for (var i=0; i<SIZE*SIZE; i++) if (tempSquares[i] === false) flag = false;
+      if (flag) winSequence();
     }
 
     const winSequence = async () => {
