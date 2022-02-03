@@ -22,8 +22,8 @@
 }
 
 .square {
-  width: 8vmin;
-  height: 8vmin;
+  width: 12vmin;
+  height: 12vmin;
   border: 3px solid #282c34;
   border-radius: 2.5vmin;
   float: left;
@@ -74,7 +74,7 @@
 
 .control {
   width: 15vmin;
-  height: 5vmin;
+  height: 10vmin;
   background: #3f4552;
   border: 3px solid #282c34;
   border-radius: 3vmin;

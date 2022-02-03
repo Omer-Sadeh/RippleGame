@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.RippleGame",
+  "appName": "Ripple Game",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {}
+}
