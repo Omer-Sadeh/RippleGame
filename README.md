@@ -1,5 +1,8 @@
-# The Ripple Game!
+# Ripple Game
 
-Runs with React...
+This is a little mobile game I made with React to learn basic concepts of React and androir apps developement.
+Still a WIP.
 
-[Download Android APK](https://www.mediafire.com/file/6qj8vljpl4f846u/RippleGame-APK.apk/file)
+#### Download The Game
+
+APK Link 1 - [MediaFire](https://www.mediafire.com/file/6qj8vljpl4f846u/RippleGame-APK.apk/file "MediaFire")
